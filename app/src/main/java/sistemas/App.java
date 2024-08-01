@@ -4,18 +4,20 @@
 package sistemas;
 
 public class App {
-    
-    // Diseñe un algoritmo para saludar al usuario: Hola usuario. El nombre del usuario es ingresado por teclado
+
+    // Diseñe un algoritmo para saludar al usuario: Hola usuario. El nombre del
+    // usuario es ingresado por teclado
     public static String saludarUsuario(String nombre) {
         try {
             return "Hola " + nombre;
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
-        
+
     }
 
-    // Diseñe un algoritmo que lea por teclado una velocidad en Km/seg y la convierta a metros/seg y a metros/hora
+    // Diseñe un algoritmo que lea por teclado una velocidad en Km/seg y la
+    // convierta a metros/seg y a metros/hora
     // retorne el valor en formato string (metrosPorSeg + "|" + metrosPorHora)
     public static String convertirVelocidad(double kmPorSeg) {
         try {
@@ -31,7 +33,8 @@ public class App {
         }
     }
 
-    // Solicitar al usuario ingresar una cantidad expresada en cc (centímetros cúbicos) y devolver su cantidad en litros
+    // Solicitar al usuario ingresar una cantidad expresada en cc (centímetros
+    // cúbicos) y devolver su cantidad en litros
     public static int convertirCcALitros(double cc) {
         try {
             int resultado = (int) (cc / 1000);
@@ -42,7 +45,8 @@ public class App {
         }
     }
 
-    // Solicitar al usuario ingresar una cantidad en dólares y convertirla a pesos según la TRM del día
+    // Solicitar al usuario ingresar una cantidad en dólares y convertirla a pesos
+    // según la TRM del día
     public static int convertirDolaresAPesos(double dolares, double trm) {
         try {
             int resultado = (int) (dolares * trm);
@@ -52,10 +56,11 @@ public class App {
         }
     }
 
-    // Solicitar al usuario ingresar la temperatura en grados centígrados y convertirla en grados Fahrenheit (averiguar la fórmula) F = 32 + ( 9 * C / 5)
+    // Solicitar al usuario ingresar la temperatura en grados centígrados y
+    // convertirla en grados Fahrenheit (averiguar la fórmula) F = 32 + ( 9 * C / 5)
     public static int convertirCelsiusAFahrenheit(double celsius) {
         try {
-            int Fahrenheit =  (int) (32 + (9 * celsius / 5));
+            int Fahrenheit = (int) (32 + (9 * celsius / 5));
             return Fahrenheit;
 
         } catch (Exception e) {
@@ -63,7 +68,8 @@ public class App {
         }
     }
 
-    // Solicitar al usuario ingresar Nro de Días nro de horas nro de minutos y nro segundos y convertir todo a segundos.
+    // Solicitar al usuario ingresar Nro de Días nro de horas nro de minutos y nro
+    // segundos y convertir todo a segundos.
     public static int convertirATotalSegundos(int dias, int horas, int minutos, int segundos) {
         try {
             int conversionDias = (int) dias * 24 * 60 * 60;
@@ -76,7 +82,8 @@ public class App {
         }
     }
 
-    // Un usuario tiene un sistema de báscula para pesar camiones, dado el peso de un camión debe sacar el peso neto de la carga en kilos y toneladas
+    // Un usuario tiene un sistema de báscula para pesar camiones, dado el peso de
+    // un camión debe sacar el peso neto de la carga en kilos y toneladas
     // retorne el valor en formato string (pesoEnKg + "|" + pesoEnToneladas)
     public static String calcularPesoNeto(double peso) {
         try {
@@ -86,21 +93,36 @@ public class App {
         }
     }
 
-    // Diseñe un algoritmo que calcule el tiempo necesario para alcanzar un destino dado por el usuario quien además ingresará la velocidad promedio en kilómetros/hora y la distancia en kilómetros
+    // Diseñe un algoritmo que calcule el tiempo necesario para alcanzar un destino
+    // dado por el usuario quien además ingresará la velocidad promedio en
+    // kilómetros/hora y la distancia en kilómetros
     public static int calcularTiempoViaje(double distancia, double velocidadKilometros, double velocidadHora) {
         try {
-            int tiempoViaje = (int) (distancia / (velocidadKilometros));
-            return tiempoViaje;
+            if (velocidadKilometros <= 0 || velocidadHora <= 0) {
+                return -1;
+            }
+            double tiempoEnHoras = distancia / (velocidadKilometros / velocidadHora);
+            if (tiempoEnHoras > 0) {
+                return (int) tiempoEnHoras;
+            } else {
+                return -1;
+            }
         } catch (Exception e) {
             return -1;
         }
     }
 
-    // Un avión necesita cargar combustible para cubrir sus rutas programadas en el día. Cada 0.2 toneladas de combustible puede recorrer 60.8 Km en velocidad de crucero. En el despegue el avión consume 1.2 toneladas de combustible y en el aterrizaje consume 0.4 toneladas. El piloto desea un algoritmo que ingresando 4 rutas y el kilometraje de cada ruta obtenga la cantidad de combustible que debe tanquear en el avión.
+    // Un avión necesita cargar combustible para cubrir sus rutas programadas en el
+    // día. Cada 0.2 toneladas de combustible puede recorrer 60.8 Km en velocidad de
+    // crucero. En el despegue el avión consume 1.2 toneladas de combustible y en el
+    // aterrizaje consume 0.4 toneladas. El piloto desea un algoritmo que ingresando
+    // 4 rutas y el kilometraje de cada ruta obtenga la cantidad de combustible que
+    // debe tanquear en el avión.
     public static int calcularCombustible(double ruta1, double ruta2, double ruta3, double ruta4) {
         try {
-            int distanciaPorRecorrer = (int) ((ruta1 / 60.8 * 0.2) + (ruta2 / 60.8 * 0.2) + (ruta3 / 60.8 * 0.2) + (ruta4 / 60.8 * 0.2));
-            int combustibleTotal = (int) (distanciaPorRecorrer + ((1.2 + 0.4) * 4) );
+            int distanciaPorRecorrer = (int) ((ruta1 / 60.8 * 0.2) + (ruta2 / 60.8 * 0.2) + (ruta3 / 60.8 * 0.2)
+                    + (ruta4 / 60.8 * 0.2));
+            int combustibleTotal = (int) (distanciaPorRecorrer + ((1.2 + 0.4) * 4));
 
             return combustibleTotal;
 
@@ -109,7 +131,9 @@ public class App {
         }
     }
 
-    // Diseñar un algoritmo que calcule el peso neto en la luna de un peso terrestre ingresado por teclado. La gravedad de la Luna es de alrededor del 17% más que la de la tierra
+    // Diseñar un algoritmo que calcule el peso neto en la luna de un peso terrestre
+    // ingresado por teclado. La gravedad de la Luna es de alrededor del 17% más que
+    // la de la tierra
     public static int calcularPesoLunar(double pesoTierra) {
         try {
             int pesoLunar = (int) (pesoTierra + (pesoTierra * 0.17));
@@ -119,7 +143,9 @@ public class App {
         }
     }
 
-    // Diseñar un algoritmo que calcule el saldo que debe haber en una taquilla de un banco. El cajero deberá ingresar la base el total de recaudos y el total de retiros
+    // Diseñar un algoritmo que calcule el saldo que debe haber en una taquilla de
+    // un banco. El cajero deberá ingresar la base el total de recaudos y el total
+    // de retiros
     public static int calcularSaldoTaquilla(double base, double ingresos, double retiros) {
         try {
             return (int) (base - retiros + ingresos);
@@ -128,20 +154,25 @@ public class App {
         }
     }
 
-    // Diseñe un algoritmo para calcular la propina en un restaurante(10%) el impuesto al consumo (8%) y el valor final que deberá pagar ingresando el valor de la comida.
+    // Diseñe un algoritmo para calcular la propina en un restaurante(10%) el
+    // impuesto al consumo (8%) y el valor final que deberá pagar ingresando el
+    // valor de la comida.
     // retorne el valor en formato string (propina + "|" + impuesto + "|" + total)
     public static String calcularCuentaRestaurante(double costoComida) {
         try {
             double costoPropina = costoComida * 0.1;
             double costoImpuesto = costoComida * 0.08;
             double costoTotal = costoComida + costoPropina + costoImpuesto;
-            return costoPropina + "|" + costoImpuesto + "|" + costoTotal;
+            return (int) costoPropina + "|" + (int) costoImpuesto + "|" + (int) costoTotal;
         } catch (Exception e) {
             return -1 + "|" + -1 + "|" + -1;
         }
     }
 
-    // Diseñar un algoritmo que obtenga los puntos finales de un equipo de fútbol (puntuación según lineamientos de Fifa) a partir de los datos ingresados por teclado: Número de partidos ganados número de partidos perdidos número de partidos empatados.
+    // Diseñar un algoritmo que obtenga los puntos finales de un equipo de fútbol
+    // (puntuación según lineamientos de Fifa) a partir de los datos ingresados por
+    // teclado: Número de partidos ganados número de partidos perdidos número de
+    // partidos empatados.
     public static int calcularPuntosFutbol(int ganados, int perdidos, int empatados) {
         try {
             int puntos = (ganados * 3) + (empatados * 1);
@@ -151,12 +182,14 @@ public class App {
         }
     }
 
-    // Elaborar un algoritmo que dadas todas las 5 notas y los 5 porcentajes para una materia calcule la nota final.
+    // Elaborar un algoritmo que dadas todas las 5 notas y los 5 porcentajes para
+    // una materia calcule la nota final.
     public static int calcularNotaFinal(double nota1, double nota2, double nota3, double nota4, double nota5,
-                                        double porcentaje1, double porcentaje2, double porcentaje3, double porcentaje4, double porcentaje5) {
+            double porcentaje1, double porcentaje2, double porcentaje3, double porcentaje4, double porcentaje5) {
         try {
-            double notaFinal = (nota1 * porcentaje1) + (nota2 * porcentaje2) + (nota3 * porcentaje3) + (nota4 * porcentaje4) + (nota5 * porcentaje5);
-            if(notaFinal > 0){
+            double notaFinal = (nota1 * porcentaje1) + (nota2 * porcentaje2) + (nota3 * porcentaje3)
+                    + (nota4 * porcentaje4) + (nota5 * porcentaje5);
+            if (notaFinal > 0) {
                 return (int) notaFinal;
             } else {
                 return -1;
@@ -166,11 +199,16 @@ public class App {
         }
     }
 
-    // Elaborar un algoritmo que dados los 5 porcentajes de una materia y las 4 primeras notas calcule cuánto tiene que sacar para ganar si el puntaje mínimo es 3.
-    public static int calcularNotaNecesaria(double porcentaje1, double porcentaje2, double porcentaje3, double porcentaje4, double porcentaje5, double nota1, double nota2, double nota3, double nota4) {
+    // Elaborar un algoritmo que dados los 5 porcentajes de una materia y las 4
+    // primeras notas calcule cuánto tiene que sacar para ganar si el puntaje mínimo
+    // es 3.
+    public static int calcularNotaNecesaria(double porcentaje1, double porcentaje2, double porcentaje3,
+            double porcentaje4, double porcentaje5, double nota1, double nota2, double nota3, double nota4) {
         try {
-            double notaNecesaria = (3 - ((nota1 * porcentaje1) + (nota2 * porcentaje2) + (nota3 * porcentaje3) + (nota4 * porcentaje4)) / porcentaje5);
-            if(notaNecesaria > 0){
+            double notaNecesaria = (3
+                    - ((nota1 * porcentaje1) + (nota2 * porcentaje2) + (nota3 * porcentaje3) + (nota4 * porcentaje4))
+                            / porcentaje5);
+            if (notaNecesaria > 0) {
                 return (int) notaNecesaria;
             } else {
                 return -1;
@@ -180,8 +218,15 @@ public class App {
         }
     }
 
-    // Se requiere un algoritmo para calcular el salario a pagar a un trabajador con los siguientes datos ingresados por teclado: cantidad de horas normales laboradas cantidad de horas extras diurnas laboradas cantidad de horas extras nocturnas laboradas valor de la hora normal. El valor de las horas extras diurnas tienen un recargo adicional del 15% sobre la hora normal. El valor de las horas extras nocturnas tienen un recargo adicional del 35% sobre la hora normal.
-    public static int calcularSalario(int horasNormales, int horasExtrasDiurnas, int horasExtrasNocturnas, double valorHoraNormal) {
+    // Se requiere un algoritmo para calcular el salario a pagar a un trabajador con
+    // los siguientes datos ingresados por teclado: cantidad de horas normales
+    // laboradas cantidad de horas extras diurnas laboradas cantidad de horas extras
+    // nocturnas laboradas valor de la hora normal. El valor de las horas extras
+    // diurnas tienen un recargo adicional del 15% sobre la hora normal. El valor de
+    // las horas extras nocturnas tienen un recargo adicional del 35% sobre la hora
+    // normal.
+    public static int calcularSalario(int horasNormales, int horasExtrasDiurnas, int horasExtrasNocturnas,
+            double valorHoraNormal) {
         try {
             double salarioNormal = horasNormales * valorHoraNormal;
             double salarioHorasDiurnas = horasExtrasDiurnas * (valorHoraNormal + valorHoraNormal * 0.15);
@@ -224,7 +269,8 @@ public class App {
         }
     }
 
-    // Diseñe un algoritmo que calcule el área del círculo. El radio se pide por teclado.
+    // Diseñe un algoritmo que calcule el área del círculo. El radio se pide por
+    // teclado.
     public static int calcularAreaCirculo(double radio) {
         try {
             return (int) (Math.PI * radio * radio);
